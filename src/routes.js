@@ -4,6 +4,10 @@ const StudentController = require('./controllers/StudentController')
 
 const routes = express.Router()
 
+routes.get('/', (req, res) => {
+  res.sendFile(__dirname+"/pages/index.html");
+});
+
 routes.post('/groups', GroupController.store)
 routes.get('/groups', GroupController.getAll)
 
