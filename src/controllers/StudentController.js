@@ -65,7 +65,6 @@ module.exports = {
     const student = await Student.findOne({ where: { raStudent },
     include: {
       association: 'groups',
-      attributes: ['nmGrupo', 'descGrupo', 'objGrupo'],
       through: { attributes: [] }
     }})
 
