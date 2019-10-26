@@ -69,5 +69,20 @@ module.exports = {
     }})
 
     return res.json(student.groups)
+  },
+
+  async isRegistered (req, res) {
+    const { raStudent, groupid } = req.params
+
+    await Student.count({ where: { raStudent },
+    include: [{
+      model: Group,
+      as: 'groups',
+      where: { id: groupid }
+    }] })
+      .then(data => {
+        res.json(data)
+      })
+      .catch(() => res.sendStatus(400))
   }
 }

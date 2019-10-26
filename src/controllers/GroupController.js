@@ -33,11 +33,13 @@ module.exports = {
 
   async getQttStudents(req, res) {
     const { groupid } = req.params
-    await Group.findAndCountAll({
-      where: { id: groupid },
+    await Student.findAndCountAll({
+      attributes: [],
       include: [{
-        model: Student,
-        as: 'students'
+        model: Group,
+        as: 'groups',
+        where: { id: groupid },
+        attributes: []
       }]
     })
       .then(data => {

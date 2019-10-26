@@ -21,4 +21,6 @@ routes.get('/groups/student/:raStudent', StudentController.subscribedGroups)
 
 routes.get('/groups/:groupid/studentqtt', GroupController.getQttStudents)
 
+routes.get('/groups/:groupid/student/:raStudent', StudentController.isRegistered)
+
 module.exports = routes
