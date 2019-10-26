@@ -19,4 +19,6 @@ routes.delete('/groups/:groupid/student', StudentController.unsubscribeGroup)
 
 routes.get('/groups/student/:raStudent', StudentController.subscribedGroups)
 
+routes.get('/groups/:groupid/studentqtt', GroupController.getQttStudents)
+
 module.exports = routes

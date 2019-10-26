@@ -1,4 +1,5 @@
 const Group = require('../models/Group')
+const Student = require('../models/Student')
 
 module.exports = {
   async store(req, res) {
@@ -28,5 +29,21 @@ module.exports = {
     const groups = await Group.findAll();
 
     return res.json(groups)
+  },
+
+  async getQttStudents(req, res) {
+    const { groupid } = req.params
+    await Group.findAndCountAll({
+      where: { id: groupid },
+      include: [{
+        model: Student,
+        as: 'students'
+      }]
+    })
+      .then(data => {
+        console.log(data.count)
+        res.json(data.count)
+      })
+      .catch(() => res.sendStatus(400))
   }
 }
